@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Daisy Tang</title>
+<meta name="description" content="Daisy Tang — software engineer, M.S. Computer Software Engineering at Northeastern University. Seeking Summer 2027 SWE internships.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #fbfaf7;
+  --surface: #ffffff;
+  --text: #1c1b19;
+  --muted: #5f5d57;
+  --faint: #8d8a82;
+  --line: #e8e5de;
+  --accent: #b4532a;
+  --accent-soft: #f6e9e1;
+  --chip: #f1efe9;
+  --shadow: 0 1px 2px rgba(28,27,25,.04), 0 8px 24px rgba(28,27,25,.06);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #161514; --surface: #1f1e1c; --text: #ece9e2; --muted: #a8a49b; --faint: #7d7a72;
+    --line: #2f2d2a; --accent: #e08a5e; --accent-soft: #3a2a21; --chip: #282624;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.25);
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #161514; --surface: #1f1e1c; --text: #ece9e2; --muted: #a8a49b; --faint: #7d7a72;
+  --line: #2f2d2a; --accent: #e08a5e; --accent-soft: #3a2a21; --chip: #282624;
+  --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.25);
+}
+
+* { box-sizing: border-box; margin: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+body {
+  background: var(--bg); color: var(--text);
+  font: 16px/1.65 Inter, system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+.wrap { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+h1, h2, h3 { font-family: Fraunces, Georgia, serif; font-weight: 600; letter-spacing: -.01em; line-height: 1.2; }
+.mono { font-family: "JetBrains Mono", ui-monospace, monospace; }
+
+/* nav */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  background: color-mix(in srgb, var(--bg) 85%, transparent);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--line);
+}
+nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+.brand { font-family: Fraunces, serif; font-weight: 600; text-decoration: none; font-size: 18px; }
+.links { display: flex; gap: 22px; align-items: center; }
+.links a { text-decoration: none; color: var(--muted); font-size: 14.5px; }
+.links a:hover { color: var(--text); }
+.theme-btn {
+  border: 1px solid var(--line); background: var(--surface); color: var(--muted);
+  width: 32px; height: 32px; border-radius: 8px; cursor: pointer; font-size: 15px;
+}
+
+/* hero */
+.hero { display: grid; grid-template-columns: 1.35fr 1fr; gap: 56px; align-items: center; padding-top: 80px; padding-bottom: 72px; }
+.hello { color: var(--faint); font-style: italic; font-family: Fraunces, serif; font-size: 18px; }
+.hero h1 { font-size: clamp(40px, 6vw, 60px); margin: 6px 0 14px; }
+.tagline { display: flex; flex-wrap: wrap; gap: 6px 10px; color: var(--accent); font-size: 14.5px; font-weight: 500; margin-bottom: 22px; }
+.tagline span + span::before { content: "·"; margin-right: 10px; color: var(--faint); }
+.hero p { color: var(--muted); margin-bottom: 14px; max-width: 34em; }
+.cta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; border-radius: 10px;
+  font-size: 14.5px; font-weight: 500; text-decoration: none; border: 1px solid var(--line); background: var(--surface);
+}
+.btn.primary { background: var(--text); color: var(--bg); border-color: var(--text); }
+.btn:hover { transform: translateY(-1px); }
+.btn svg { width: 16px; height: 16px; }
+.photo {
+  background: var(--surface); padding: 14px 14px 44px; box-shadow: var(--shadow);
+  transform: rotate(2.5deg); border-radius: 4px; position: relative; max-width: 330px; justify-self: center;
+}
+.photo img { display: block; width: 100%; aspect-ratio: 782/900; object-fit: cover; border-radius: 2px; }
+.photo figcaption {
+  position: absolute; bottom: 12px; left: 0; right: 0; text-align: center;
+  font-family: Fraunces, serif; font-style: italic; color: var(--faint); font-size: 14px;
+}
+.status {
+  display: inline-flex; align-items: center; gap: 8px; font-size: 13.5px; color: var(--muted);
+  background: var(--surface); border: 1px solid var(--line); padding: 5px 12px; border-radius: 999px; margin-bottom: 18px;
+}
+.status i { width: 8px; height: 8px; border-radius: 50%; background: #3fa76a; box-shadow: 0 0 0 3px color-mix(in srgb, #3fa76a 25%, transparent); }
+
+/* sections */
+section { padding: 56px 0; border-top: 1px solid var(--line); }
+.eyebrow { font-family: "JetBrains Mono", monospace; font-size: 12.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+section > .wrap > h2 { font-size: 32px; margin-bottom: 32px; }
+
+/* experience */
+.job { display: grid; grid-template-columns: 180px 1fr; gap: 24px; padding: 22px 0; }
+.job + .job { border-top: 1px dashed var(--line); }
+.when { color: var(--faint); font-size: 14px; padding-top: 3px; }
+.job h3 { font-size: 20px; }
+.job .org { color: var(--muted); font-size: 15px; margin: 2px 0 12px; }
+.job ul { padding-left: 18px; color: var(--muted); }
+.job li { margin-bottom: 6px; }
+.job li::marker { color: var(--accent); }
+
+/* projects */
+.project {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 16px;
+  padding: 30px; box-shadow: var(--shadow); margin-bottom: 24px;
+}
+.p-head { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; align-items: flex-start; }
+.project h3 { font-size: 24px; }
+.project .sub { color: var(--muted); margin: 6px 0 14px; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { font-family: "JetBrains Mono", monospace; font-size: 12px; background: var(--chip); color: var(--muted); padding: 3px 9px; border-radius: 6px; }
+.badge { font-size: 12.5px; font-weight: 600; padding: 4px 10px; border-radius: 999px; white-space: nowrap; }
+.badge.live { background: color-mix(in srgb, #3fa76a 15%, transparent); color: #2f8a55; }
+.badge.wip { background: var(--accent-soft); color: var(--accent); }
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 22px 0; }
+.stat { background: var(--bg); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; }
+.stat b { display: block; font-family: Fraunces, serif; font-size: 26px; color: var(--accent); line-height: 1.1; }
+.stat span { font-size: 13px; color: var(--muted); }
+.story { display: grid; grid-template-columns: 1fr 1fr; gap: 18px 28px; margin-top: 20px; }
+.story h4 { font-family: "JetBrains Mono", monospace; font-size: 11.5px; letter-spacing: .1em; color: var(--faint); font-weight: 500; margin-bottom: 4px; }
+.story p { font-size: 15px; color: var(--muted); }
+.p-links { margin-top: 22px; display: flex; gap: 10px; flex-wrap: wrap; }
+
+.building { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; margin-top: 8px; }
+.mini { border: 1px dashed var(--line); border-radius: 12px; padding: 18px; }
+.mini h4 { font-family: Fraunces, serif; font-size: 17px; font-weight: 600; margin-bottom: 4px; }
+.mini p { font-size: 14px; color: var(--muted); margin-bottom: 10px; }
+.subhead { font-size: 20px !important; margin: 40px 0 6px !important; }
+.subnote { color: var(--muted); font-size: 15px; margin-bottom: 14px; }
+
+/* skills + education */
+.skills { display: grid; grid-template-columns: 1fr 1fr; gap: 20px 40px; }
+.skills h4 { font-size: 14px; font-weight: 600; margin-bottom: 8px; }
+.edu { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.edu-card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 22px; }
+.edu-card h3 { font-size: 19px; }
+.edu-card p { color: var(--muted); font-size: 15px; }
+.edu-card .meta { color: var(--faint); font-size: 14px; margin-top: 8px; }
+
+/* contact */
+.contact { text-align: center; padding: 72px 0 88px; }
+.contact h2 { font-size: 34px; margin-bottom: 12px; }
+.contact p { color: var(--muted); margin-bottom: 26px; }
+.contact .cta { justify-content: center; }
+footer { text-align: center; color: var(--faint); font-size: 13px; padding: 24px 0 40px; }
+
+@media (max-width: 760px) {
+  .links a.hide-sm { display: none; }
+  .hero { grid-template-columns: 1fr; gap: 40px; padding-top: 40px; padding-bottom: 48px; }
+  .photo { max-width: 260px; order: -1; }
+  .job { grid-template-columns: 1fr; gap: 4px; }
+  .stats { grid-template-columns: 1fr; }
+  .story, .skills, .edu { grid-template-columns: 1fr; }
+  .project { padding: 22px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#top">Daisy Tang</a>
+    <div class="links">
+      <a href="#experience" class="hide-sm">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills" class="hide-sm">Skills</a>
+      <a href="#contact">Contact</a>
+      <button class="theme-btn" id="theme" aria-label="Toggle dark mode">◐</button>
+    </div>
+  </div>
+</nav>
+
+<main id="top">
+  <div class="wrap hero">
+    <div>
+      <div class="status"><i></i>Open to Summer 2027 SWE internships</div>
+      <div class="hello">hi, i'm</div>
+      <h1>Daisy Tang</h1>
+      <div class="tagline">
+        <span>Software Engineer</span>
+        <span>Full-stack &amp; AI applications</span>
+        <span>M.S. CSE @ Northeastern</span>
+      </div>
+      <p>I build software that makes data easier to act on — from React dashboards and typed data layers to retrieval-augmented AI assistants that know when <em>not</em> to answer.</p>
+      <p>Before engineering, I trained as an architect and urban designer in China and the UK, then spent a year and a half planning technology for a 126-initiative smart-city program. That background taught me to think in systems and design for the people who use them.</p>
+      <div class="cta">
+        <a class="btn primary" href="#projects">See my work</a>
+        <a class="btn" href="https://github.com/thxsyyd" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a11.5 11.5 0 00-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 015.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.43-2.7 5.4-5.26 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0012 .5z"/></svg>GitHub
+        </a>
+        <a class="btn" href="https://linkedin.com/in/haoxuan-tang/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 110-4.13 2.06 2.06 0 010 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>LinkedIn
+        </a>
+      </div>
+    </div>
+    <figure class="photo">
+      <img src="assets/daisy.jpg" alt="Portrait of Daisy Tang">
+      <figcaption>seattle, wa ✦</figcaption>
+    </figure>
+  </div>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="wrap">
+      <div class="eyebrow">Experience</div>
+      <h2>Where I've worked</h2>
+
+      <div class="job">
+        <div class="when">May – Aug 2026<br>Seattle, WA</div>
+        <div>
+          <h3>Software Engineer Intern</h3>
+          <div class="org">IpserLab</div>
+          <ul>
+            <li>Designed a responsive React SPA with nested routing, syncing filter state with URL parameters for deep-linking and sub-second ROI drill-downs.</li>
+            <li>Built TypeScript data-fetching hooks with debouncing and client-side caching for RentCast REST APIs, reducing redundant network requests by 40%.</li>
+            <li>Developed interactive Recharts dashboards — distribution histograms and scatter plots across 1,000+ dynamic property datasets.</li>
+            <li>Prevented memory leaks and race conditions in async lifecycles with AbortController-based request cancellation.</li>
+          </ul>
+          <div class="chips" style="margin-top:12px"><span class="chip">React</span><span class="chip">TypeScript</span><span class="chip">React Router</span><span class="chip">Recharts</span><span class="chip">REST APIs</span></div>
+        </div>
+      </div>
+
+      <div class="job">
+        <div class="when">Aug 2024 – Dec 2025<br>Sanya, China</div>
+        <div>
+          <h3>Technology Strategy Planner</h3>
+          <div class="org">Sanya Yazhou Bay Science and Technology City</div>
+          <ul>
+            <li>Automated project tracking across 126 smart-city initiatives with structured relational schemas, reducing manual oversight errors by 40%.</li>
+            <li>Engineered telemetry data specifications for a Digital Twin, integrating IoT and computer vision to replace 6+ hours/week of manual inspections.</li>
+            <li>Built data aggregation pipelines and KPI dashboards covering 130+ metrics across 13+ departments, cutting decision cycles from 3 hours to 30 minutes.</li>
+          </ul>
+          <div class="chips" style="margin-top:12px"><span class="chip">Python</span><span class="chip">SQL</span><span class="chip">IoT</span><span class="chip">KPI dashboards</span></div>
+        </div>
+      </div>
+
+      <div class="job">
+        <div class="when">Jan – Jul 2024<br>Shanghai, China</div>
+        <div>
+          <h3>Consulting Executive</h3>
+          <div class="org">Cushman &amp; Wakefield</div>
+          <ul>
+            <li>Authored the market and site-analysis sections of an investment environment assessment for a national-level biopharmaceutical industry park.</li>
+            <li>Benchmarked the host city against 9 peer metros across 7 economic and demographic dimensions, synthesizing multi-year global IVD market sizing.</li>
+            <li>Profiled 23 anchor diagnostics firms and 15.6M+ sq ft of delivered industrial space to map R&amp;D and distribution clusters for tenant targeting.</li>
+            <li>Analyzed 10+ spatial datasets on traffic, land use and density with ArcGIS and Space Syntax for a transit-oriented-development station bid.</li>
+          </ul>
+          <div class="chips" style="margin-top:12px"><span class="chip">Market research</span><span class="chip">ArcGIS</span><span class="chip">Space Syntax</span><span class="chip">Excel</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="wrap">
+      <div class="eyebrow">Projects</div>
+      <h2>Things I've built</h2>
+
+      <article class="project">
+        <div class="p-head">
+          <div>
+            <h3>DocuBot Pro</h3>
+            <div class="sub">A documentation assistant that answers from a project's own docs — and knows when to refuse.</div>
+          </div>
+          <span class="badge live">On GitHub</span>
+        </div>
+        <div class="chips"><span class="chip">Python</span><span class="chip">RAG</span><span class="chip">Gemini API</span><span class="chip">Guardrails</span><span class="chip">Offline eval</span></div>
+        <div class="stats">
+          <div class="stat"><b>3</b><span>retrieval signals scored before every answer</span></div>
+          <div class="stat"><b>0</b><span>LLM calls spent on low-confidence questions</span></div>
+          <div class="stat"><b>100%</b><span>of decisions written to a reviewable trace log</span></div>
+        </div>
+        <div class="story">
+          <div><h4>PROBLEM</h4><p>A basic RAG assistant passes whatever it retrieves to the model, so weak matches turn into confident-sounding wrong answers.</p></div>
+          <div><h4>APPROACH</h4><p>Added a confidence layer that scores top score, hit count and score gap into HIGH / MEDIUM / LOW, gating what the system does next.</p></div>
+          <div><h4>RESULT</h4><p>LOW refuses and defers to a human without calling the model; MEDIUM answers with a verify caveat; HIGH answers normally.</p></div>
+          <div><h4>WHY IT MATTERS</h4><p>The assistant fails safe instead of hallucinating, and an offline evaluation harness keeps that behavior measurable.</p></div>
+        </div>
+        <div class="p-links">
+          <a class="btn" href="https://github.com/thxsyyd/docubot-pro" target="_blank" rel="noopener">View on GitHub →</a>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="p-head">
+          <div>
+            <h3>Seattle Home Value Finder</h3>
+            <div class="sub">An investor-facing React dashboard for comparing Seattle properties by price, rent and ROI.</div>
+          </div>
+          <span class="badge wip">In progress</span>
+        </div>
+        <div class="chips"><span class="chip">React</span><span class="chip">TypeScript</span><span class="chip">Vite</span><span class="chip">React Router</span><span class="chip">Recharts</span></div>
+        <div class="story">
+          <div><h4>PROBLEM</h4><p>Comparing homes as investments means juggling listing prices, rent estimates and neighborhood data across many tabs.</p></div>
+          <div><h4>APPROACH</h4><p>A single-page app with URL-synced filters for shareable views, typed fetch hooks with caching, and cancellable requests.</p></div>
+          <div><h4>STATUS</h4><p>Rebuilding my INFO 5002 course project as a standalone app. Live demo will use snapshot data.</p></div>
+          <div><h4>COMING</h4><p>Distribution and scatter charts for price vs. rent, and ROI drill-downs by neighborhood.</p></div>
+        </div>
+      </article>
+
+      <h3 class="subhead">Currently building</h3>
+      <p class="subnote">Projects in active development. Repos and measured results will be linked here as each one ships.</p>
+      <div class="building">
+        <div class="mini">
+          <h4>NotifyFlow</h4>
+          <p>Event-driven notification service with Kafka topics, PostgreSQL persistence and Redis caching.</p>
+          <div class="chips"><span class="chip">Java</span><span class="chip">Spring Boot</span><span class="chip">Kafka</span><span class="chip">Redis</span></div>
+        </div>
+        <div class="mini">
+          <h4>StudyNest</h4>
+          <p>AI Q&amp;A agent that grounds answers in course materials, served through streaming FastAPI endpoints.</p>
+          <div class="chips"><span class="chip">Python</span><span class="chip">FastAPI</span><span class="chip">LangChain</span><span class="chip">MCP</span></div>
+        </div>
+        <div class="mini">
+          <h4>CourseHub</h4>
+          <p>Course resource platform with upload, search and enrollment APIs, deployed on Kubernetes.</p>
+          <div class="chips"><span class="chip">TypeScript</span><span class="chip">Express</span><span class="chip">MongoDB</span><span class="chip">K8s</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="wrap">
+      <div class="eyebrow">Toolbox</div>
+      <h2>Skills</h2>
+      <div class="skills">
+        <div><h4>Languages</h4><div class="chips"><span class="chip">Java</span><span class="chip">Python</span><span class="chip">TypeScript</span><span class="chip">JavaScript</span><span class="chip">SQL</span><span class="chip">HTML/CSS</span></div></div>
+        <div><h4>Frontend</h4><div class="chips"><span class="chip">React</span><span class="chip">React Router</span><span class="chip">Recharts</span><span class="chip">Tailwind CSS</span><span class="chip">Vite</span></div></div>
+        <div><h4>Backend &amp; APIs</h4><div class="chips"><span class="chip">Spring Boot</span><span class="chip">Node.js</span><span class="chip">Express</span><span class="chip">FastAPI</span><span class="chip">REST</span></div></div>
+        <div><h4>Data</h4><div class="chips"><span class="chip">PostgreSQL</span><span class="chip">MySQL</span><span class="chip">MongoDB</span><span class="chip">Redis</span><span class="chip">Pandas</span></div></div>
+        <div><h4>AI</h4><div class="chips"><span class="chip">RAG</span><span class="chip">LangChain</span><span class="chip">Google ADK</span><span class="chip">MCP</span><span class="chip">Claude Code</span></div></div>
+        <div><h4>Cloud &amp; Tools</h4><div class="chips"><span class="chip">AWS</span><span class="chip">Google Cloud</span><span class="chip">Docker</span><span class="chip">GitHub Actions</span><span class="chip">Git</span><span class="chip">JUnit</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="wrap">
+      <div class="eyebrow">Education</div>
+      <h2>Education</h2>
+      <div class="edu">
+        <div class="edu-card">
+          <h3>M.S. Computer Software Engineering</h3>
+          <p>Northeastern University · Seattle, WA</p>
+          <div class="meta">Jan 2026 – May 2028 (expected) · GPA 4.0</div>
+          <p style="margin-top:10px;font-size:14px">Object-Oriented Design, Data Structures, Algorithms, Database Systems, Web Development</p>
+        </div>
+        <div class="edu-card">
+          <h3>M.Arch. Sustainable Urban Design</h3>
+          <p>University of Nottingham · Nottingham, UK</p>
+          <div class="meta">Sep 2022 – Dec 2023 · GPA 3.9</div>
+        </div>
+        <div class="edu-card">
+          <h3>B.Eng. Architecture &amp; Urban Planning</h3>
+          <p>Zhejiang University of Technology · Hangzhou, China</p>
+          <div class="meta">Sep 2017 – Jun 2022 · GPA 3.8</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="contact">
+    <div class="wrap">
+      <div class="eyebrow">Contact</div>
+      <h2>Let's talk</h2>
+      <p>I'm looking for Summer 2027 software engineering internships. The fastest way to reach me is email.</p>
+      <div class="cta">
+        <a class="btn primary" href="mailto:thxsyyd27@outlook.com">thxsyyd27@outlook.com</a>
+        <a class="btn" href="https://linkedin.com/in/haoxuan-tang/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn" href="https://github.com/thxsyyd" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>© 2026 Daisy Tang</footer>
+
+<script>
+(function () {
+  var root = document.documentElement, btn = document.getElementById('theme');
+  try { var saved = localStorage.getItem('theme'); if (saved) root.dataset.theme = saved; } catch (e) {}
+  btn.addEventListener('click', function () {
+    var dark = root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+    root.dataset.theme = dark ? 'light' : 'dark';
+    try { localStorage.setItem('theme', root.dataset.theme); } catch (e) {}
+  });
+})();
+</script>
+</body>
+</html>
